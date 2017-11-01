@@ -13,15 +13,15 @@ DECLARE
     FARK_ NUMBER;
     BEGIN
     WITH 
-        azalan AS (SELECT man_id, egn, name, bes_ltv, hayat_ltv, katýlýmcý_ltv FROM býreysel_segment_aylýk  ORDER BY katilimci_ltv DESC   )
-        , rnazalan as ( SELECT rownum as rn, man_id, egn, name, bes_ltv, hayat_ltv, katýlýmcý_ltv FROM azalan  )
-        , bas as ( select ILK_ as satir from dual ) -- 1. satýrdan         <<-- 
-        , son as ( select SON_ as satir from dual ) -- 46956. satýra   <<--
+        azalan AS (SELECT man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM bireysel_segment_aylik  ORDER BY katilimci_ltv DESC   )
+        , rnazalan as ( SELECT rownum as rn, man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM azalan  )
+        , bas as ( select ILK_ as satir from dual ) -- 1. satirdan         <<-- 
+        , son as ( select SON_ as satir from dual ) -- 46956. satira   <<--
         , kismi_toplam AS
         ( 
           SELECT SUM(katilimci_ltv) AS ktoplam   FROM rnazalan r 
           WHERE r.rn BETWEEN
-            (select satir from bas) AND (select satir from son) -- bas.satýr ile son.satýr arasýný toplar
+            (select satir from bas) AND (select satir from son) -- bas.satir ile son.satir arasini toplar
         ),
         hedef AS (    SELECT HEDEF_TUTAR AS htoplam FROM DUAL )
         SELECT ( ht.htoplam - kt.ktoplam )     INTO FARK_
@@ -123,9 +123,9 @@ BEGIN
 DBMS_OUTPUT.PUT_LINE('.');
 DBMS_OUTPUT.PUT_LINE(SYSTIMESTAMP);
 -----
--- toplam ltv tutarýnýn 5te birini HEDEF_TUTAR alanýna yazýyoruz
-SELECT SUM(KATILIMCI_LTV)/5 INTO HEDEF_TUTAR FROM býreysel_segment_aylýk;
-SELECT COUNT(*) INTO SON_MAX FROM býreysel_segment_aylýk;
+-- toplam ltv tutarinin 5te birini HEDEF_TUTAR alanina yaziyoruz
+SELECT SUM(KATILIMCI_LTV)/5 INTO HEDEF_TUTAR FROM bireysel_segment_aylik;
+SELECT COUNT(*) INTO SON_MAX FROM bireysel_segment_aylik;
 
 DBMS_OUTPUT.PUT_LINE('-');
 DBMS_OUTPUT.PUT_LINE('BIREYSEL_SEGMENT_AYLIK TABLOSUNDA');
