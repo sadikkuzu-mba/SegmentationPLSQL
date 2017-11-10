@@ -1,6 +1,7 @@
 -- BIREYSEL_SEGMENT_AYLIK --
 /*
 	BIM2457 (c) 2017 
+	https://www.linkedin.com/in/sadikkuzu/
 */
 DECLARE 
     HEDEF_TUTAR NUMBER;
