@@ -17,9 +17,11 @@ DECLARE
     FARK_ NUMBER;
     BEGIN
     WITH 
-        azalan AS (SELECT man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM bireysel_segment_aylik  ORDER BY katilimci_ltv DESC   )
-        , rnazalan as ( SELECT rownum as rn, man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM azalan  )
-        , bas as ( select ILK_ as satir from dual ) -- 1. satirdan         <<-- 
+        -- azalan AS (SELECT man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM bireysel_segment_aylik  ORDER BY katilimci_ltv DESC   ) ,
+        rnazalan as ( -- SELECT rownum as rn, man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM azalan  
+			SELECT ROW_NUMBER () OVER (ORDER BY katilimci_ltv DESC) as rn, man_id, egn, name, bes_ltv, hayat_ltv, katilimci_ltv FROM bireysel_segment_aylik
+		)
+        , bas as ( select ILK_ as satir from dual ) -- 1. satirdan     <<-- 
         , son as ( select SON_ as satir from dual ) -- 46956. satira   <<--
         , kismi_toplam AS
         ( 
