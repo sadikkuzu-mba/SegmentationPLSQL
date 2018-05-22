@@ -1,6 +1,6 @@
 -- BIREYSEL_SEGMENT_AYLIK --
 /*
-	BIM2457 (c) 2017 
+	BIM2457 (c) 2018
 	https://www.linkedin.com/in/sadikkuzu/
 */
 DECLARE 
