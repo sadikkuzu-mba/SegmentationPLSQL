@@ -6,7 +6,7 @@ Segmentation test plsql
 
 ![](img/segments.jpg)
 
-LTV değerlerine göre azalan sıralı müşteriler, 
+[LTV](https://www.bloyal.com/customer-lifetime-value-segmentation/) değerlerine göre azalan sıralı müşteriler, 
 LTV'lerinin toplamı bazında beş eşit segmente ayrılıyor.
 Yani her segmentin LTV toplamı, toplam LTV değerinin beşte biri oluyor.
 Bu durumda en üst segmentte en az kişi, 
